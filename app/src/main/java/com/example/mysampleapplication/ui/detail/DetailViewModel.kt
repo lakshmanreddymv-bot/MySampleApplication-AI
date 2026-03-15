@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 sealed class DetailUiState {
-    object Loading : DetailUiState()
+    data class Loading(val item: MyListItem? = null) : DetailUiState()
     data class Success(val item: MyListItem, val description: String) : DetailUiState()
     data class Error(val item: MyListItem?, val message: String) : DetailUiState()
 }
@@ -21,7 +21,7 @@ class DetailViewModel(
     private val repository: ItemRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
+    private val _uiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading())
     val uiState: StateFlow<DetailUiState> = _uiState
 
     fun loadDetail(itemId: Int) {
@@ -31,7 +31,7 @@ class DetailViewModel(
             return
         }
         viewModelScope.launch {
-            _uiState.value = DetailUiState.Loading
+            _uiState.value = DetailUiState.Loading(item)
             try {
                 _uiState.value = DetailUiState.Success(item, getItemDetailUseCase(item))
             } catch (e: Exception) {
