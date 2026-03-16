@@ -39,5 +39,21 @@ com.example.mysampleapplication/
 - **Data Layer** – Repository implementations and Gemini API integration via Retrofit
 - **UI Layer** – Jetpack Compose screens and ViewModels following MVVM
 
+## Tech Stack & AI Integration
+
+**AI Layer:**
+- **Gemini API** — Google's multimodal LLM used for natural language 
+  understanding and intelligent response generation
+- **LLM Integration** — REST API calls to large language models 
+  using Retrofit + OkHttp, handling streaming responses, 
+  error states and rate limiting
+- **AI-powered Android features** — on-device intelligence 
+  via ML Kit + cloud inference via Gemini API
+
+**Developer Tooling:**
+- **MCP (Model Context Protocol)** — open standard that connects 
+  AI assistants directly to IDEs, enabling Claude Desktop to 
+  read, write and refactor code inside Android Studio in real time
+
 ## Author
 **Lakshmana Reddy**
