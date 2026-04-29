@@ -3,7 +3,7 @@
 [![CI](https://github.com/lakshmanreddymv-bot/MySampleApplication-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/lakshmanreddymv-bot/MySampleApplication-AI/actions/workflows/ci.yml)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?logo=kotlin&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-API%2024%2B-3DDC84?logo=android&logoColor=white)
-![Gemini API](https://img.shields.io/badge/Gemini-2.0%20Flash-4285F4?logo=google&logoColor=white)
+![Gemini API](https://img.shields.io/badge/Gemini-2.5%20Flash-4285F4?logo=google&logoColor=white)
 ![Tests](https://img.shields.io/badge/Tests-38%20passing-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
