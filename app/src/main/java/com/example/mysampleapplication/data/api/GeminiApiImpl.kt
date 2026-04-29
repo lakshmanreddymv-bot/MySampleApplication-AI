@@ -30,7 +30,7 @@ class GeminiApiImpl(
     baseUrl: String = "https://generativelanguage.googleapis.com/v1beta/"
 ) : GeminiApi {
 
-    private val url = "${baseUrl.trimEnd('/')}/models/gemini-2.5-flash-preview-04-17:generateContent?key=$apiKey"
+    private val url = "${baseUrl.trimEnd('/')}/models/gemini-2.5-flash:generateContent?key=$apiKey"
 
     /**
      * Sends [prompt] to Gemini 2.5 Flash and returns the first candidate's text.
