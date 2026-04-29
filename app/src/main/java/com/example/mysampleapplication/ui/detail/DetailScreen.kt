@@ -26,6 +26,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * Root composable for the item detail screen.
+ *
+ * Observes [DetailViewModel.uiState] and recomposes when state changes:
+ * - [DetailUiState.Loading] — shows a full-screen spinner with "Generating AI summary..."
+ * - [DetailUiState.Success] — renders the AI-generated description
+ * - [DetailUiState.Error] — shows an error message with a retry button
+ *
+ * The top bar title reflects the item name as soon as it is known, even during loading.
+ *
+ * @param vm The [DetailViewModel] driving this screen.
+ * @param onBack Callback invoked when the user taps the back navigation button.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(vm: DetailViewModel, onBack: () -> Unit) {
@@ -58,7 +71,6 @@ fun DetailScreen(vm: DetailViewModel, onBack: () -> Unit) {
         ) {
             when (val state = uiState) {
                 is DetailUiState.Loading -> {
-                    // Full-screen overlay with spinner + label
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.85f)

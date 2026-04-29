@@ -35,6 +35,18 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.mysampleapplication.domain.model.MyListItem
 
+/**
+ * Root composable for the list/search screen.
+ *
+ * Observes [ListViewModel.uiState] and recomposes when state changes:
+ * - [ListUiState.Idle] — shows the full catalogue
+ * - [ListUiState.Loading] — dims the list behind a semi-transparent overlay with a spinner
+ * - [ListUiState.Success] — shows filtered results (or a "no results" message)
+ * - [ListUiState.Error] — shows an error message with a retry button
+ *
+ * @param vm The [ListViewModel] driving this screen.
+ * @param onItemClick Callback invoked when the user taps an item.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListScreen(vm: ListViewModel, onItemClick: (MyListItem) -> Unit) {
@@ -78,13 +90,11 @@ fun ListScreen(vm: ListViewModel, onItemClick: (MyListItem) -> Unit) {
             when (val state = uiState) {
                 is ListUiState.Idle -> ItemList(items = vm.allItems, onItemClick = onItemClick)
                 is ListUiState.Loading -> {
-                    // Show previous item list dimmed in the background while loading
                     ItemList(
                         items = vm.allItems,
                         onItemClick = {},
                         modifier = Modifier.fillMaxSize()
                     )
-                    // Semi-transparent overlay with spinner + label
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.85f)
@@ -127,6 +137,13 @@ fun ListScreen(vm: ListViewModel, onItemClick: (MyListItem) -> Unit) {
     }
 }
 
+/**
+ * Scrollable list of [MyListItem] entries.
+ *
+ * @param items Items to display.
+ * @param onItemClick Callback invoked when the user taps a row.
+ * @param modifier Optional modifier applied to the [LazyColumn].
+ */
 @Composable
 private fun ItemList(
     items: List<MyListItem>,

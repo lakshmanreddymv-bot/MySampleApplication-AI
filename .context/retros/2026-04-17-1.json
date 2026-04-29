@@ -1,0 +1,50 @@
+{
+  "date": "2026-04-17",
+  "window": "all-time",
+  "metrics": {
+    "commits": 3,
+    "contributors": 1,
+    "prs_merged": 1,
+    "insertions": 1842,
+    "deletions": 9,
+    "net_loc": 1833,
+    "test_loc": 17,
+    "test_ratio": 0.009,
+    "active_days": 1,
+    "sessions": 1,
+    "deep_sessions": 1,
+    "avg_session_minutes": 23,
+    "loc_per_session_hour": 4750,
+    "feat_pct": 0.33,
+    "fix_pct": 0.0,
+    "peak_hour": 16,
+    "ai_assisted_commits": 0
+  },
+  "authors": {
+    "Lakshmana Reddy": {
+      "commits": 3,
+      "insertions": 1842,
+      "deletions": 9,
+      "test_ratio": 0.009,
+      "top_area": "app/src/main/java/"
+    }
+  },
+  "version_range": ["1.0", "1.0"],
+  "streak_days": 1,
+  "tweetable": "Project 1 audit: 3 commits, 1.8k LOC, Clean Architecture + Gemini API — missing KDoc, tests, CI, README quality, CHANGELOG",
+  "test_health": {
+    "total_test_files": 2,
+    "tests_added_this_period": 1,
+    "regression_test_commits": 0,
+    "test_files_changed": 1
+  },
+  "portfolio_gaps": {
+    "kdoc": false,
+    "solid_udf_docs": false,
+    "unit_tests": false,
+    "github_actions_ci": false,
+    "mermaid_diagrams": false,
+    "changelog": false,
+    "production_readme": false
+  }
+}

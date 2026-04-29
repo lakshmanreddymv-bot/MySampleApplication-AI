@@ -5,8 +5,25 @@ import com.example.mysampleapplication.domain.model.MyListItem
 import com.example.mysampleapplication.domain.repository.ItemRepository
 import org.json.JSONArray
 
+// S: Single Responsibility — provides item data and bridges to the Gemini API
+// D: Dependency Inversion — depends on GeminiApi interface, not the HTTP implementation
+
+/**
+ * Concrete implementation of [ItemRepository] backed by an in-memory catalogue and the
+ * Gemini AI API for search and detail generation.
+ *
+ * The catalogue is a static list of 90 items spanning food, technology, sports, nature,
+ * cities, art, science, and wellness — chosen to demonstrate broad natural language search.
+ *
+ * @property api Gemini API client used for search and detail generation.
+ */
 class ItemRepositoryImpl(private val api: GeminiApi) : ItemRepository {
 
+    /**
+     * Returns the full static catalogue of 90 items.
+     *
+     * This is an in-memory operation — safe to call on any thread.
+     */
     override fun getAllItems(): List<MyListItem> = listOf(
         MyListItem(1, "Pizza Margherita"),
         MyListItem(2, "Sushi Roll"),
@@ -100,6 +117,15 @@ class ItemRepositoryImpl(private val api: GeminiApi) : ItemRepository {
         MyListItem(90, "Hydration Tracking")
     )
 
+    /**
+     * Uses the Gemini API to find items matching [query] using natural language understanding.
+     *
+     * Sends the full catalogue to Gemini as context and asks it to return a JSON array of
+     * matching item IDs. Strips any markdown code-block wrapping before parsing.
+     *
+     * @param query Natural language search string from the user.
+     * @return Subset of [getAllItems] that the model determined match the query.
+     */
     override suspend fun searchItems(query: String): List<MyListItem> {
         val items = getAllItems()
         val itemsText = items.joinToString("\n") { "${it.id}:${it.text}" }
@@ -127,6 +153,12 @@ class ItemRepositoryImpl(private val api: GeminiApi) : ItemRepository {
         return items.filter { it.id in matchingIds }
     }
 
+    /**
+     * Asks the Gemini API to generate a brief description of [item].
+     *
+     * @param item The catalogue item to describe.
+     * @return A 2–3 sentence informative description from the Gemini model.
+     */
     override suspend fun getItemDetail(item: MyListItem): String {
         val prompt = "Give a brief 2-3 sentence description of \"${item.text}\". Be informative and engaging."
         return api.generateContent(prompt)
