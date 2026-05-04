@@ -7,7 +7,22 @@
 ![Tests](https://img.shields.io/badge/Tests-38%20passing-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-> Search 90 catalogue items using plain English. Powered by Gemini 2.0 Flash — no keyword matching, just intent.
+> Search 90 catalogue items using plain English. Powered by Gemini 2.5 Flash — no keyword matching, just intent.
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="Screenshot_20260504_161357.png"
+       width="270" alt="List Screen"/>
+  &nbsp;&nbsp;
+  <img src="Screenshot_20260504_161446.png"
+       width="270" alt="Search Results"/>
+  &nbsp;&nbsp;
+  <img src="Screenshot_20260504_161607.png"
+       width="270" alt="Detail Screen"/>
+</p>
 
 ---
 
